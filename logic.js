@@ -56,5 +56,20 @@ $(document).ready(function () {
 
 //MAIN PROCESSES
 //======================================
+// 1.Create functions to call on API for URLs to featured articles ("In the news", "did you know?", "On this day..." etc.)
+//      a. onClick function targeting button that performs ajax call for the appropriate URL.
+
+// 2.Display these results underneath appropriate button when clicked.
+//      a. target element and display(style as dropdown).
+
+// 3. Create user profile.
+
+// 4. Create ability for users to save articles in different folders.
+
+
+
+
+
+
 
 console.log("test");
