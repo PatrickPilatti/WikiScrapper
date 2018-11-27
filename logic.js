@@ -21,32 +21,40 @@ $(document).ready(function () {
         });
     });
 
+    function Search (){
+
+        var search = document.getElementById("searchTerm").value;
+
+        var wikiApi = 'https://en.wikipedia.org/w/api.php';
+
+        var api = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exlimit=max&format=json&exsentences=1&exintro=&explaintext=&generator=search&gsrlimit=10&gsrsearch=";
+
+        var wikilink = 'http://en.wikipedia.org/?curid=';
+
+        var link = api + search;
+        var html = "";
+
+        $.ajax({
+            url: link,
+            type: "get",
+            dataType: "JSONP",
+            success: function (data) {
+                var results = data.query.pages;
+                var pgs = Object.keys(results);
+                pgs.forEach(function (page) {
+                    var title = results[page].title;
+                    var text = results[page].extract;
+                    var pagelink = wikilink + results[page].pageid;
+    
+                    html += '<a href="' + pagelink + '" >' + '<div class="item">' + title + '<br>' + '<p class="description-text" >' + text + '</p>' + '</div></a>  <br> ';
+                });
+                
+                 $('#display').html(html);
+            }
+        });
+    }
+
 //MAIN PROCESSES
 //======================================
-// $(document).ready(function() {
-
-//     $('#search').click(function(){
-        
-//         var searchTerm = $('searchTerm').val();
-
-//         var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm + "&format=json&callback=?";
-
-//         $.ajax({
-//             type:"GET",
-//             url:url,
-//             async: false,
-//             dataType: "json",
-//             success:function(data){
-//                 console.log(data[1][0]);
-//                 console.log(data[2][0]);
-//                 console.log(data[3][0])
-//             },
-//             error: function(errorMessage){
-//             alert("Error");
-//             }
-//         })
-//     });
-
-// });
 
 console.log("test");
